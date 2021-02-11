@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Article, replyToPHeadlines } from '../interface/interfaces';
-import { NewsService } from '../services/news.service';
+import { Article, replyToPHeadlines } from '../../interface/interfaces';
+import { NewsService } from '../../services/news.service';
 
 @Component({
   selector: 'app-tab1',

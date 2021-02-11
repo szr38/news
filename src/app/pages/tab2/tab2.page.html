@@ -1,0 +1,25 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+</ion-content> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar color='dark'>
+    <ion-title>Category News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color='dark'>
+  <ion-segment [value]="category[0]" scrollable (ionChange)='onCategoryChange($event)'>
+    <ion-segment-button   mode="md" color="primary" *ngFor="let item of category" [value]="item">
+      <ion-label mode="md">{{item}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <app-news [notices]="notices"></app-news>
+</ion-content>
