@@ -9,18 +9,34 @@ import { NewsService } from '../../services/news.service';
 })
 export class Tab1Page implements OnInit {
 
-  notices:Article[]=[];
+  notices: Article[] = [];
+  page: number = 1;
 
-  constructor(private service:NewsService) {}
+  constructor(private service: NewsService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.service.getTopHeadlines().subscribe((resp:replyToPHeadlines) =>{
-      console.log('noticias',resp);
+    this.serviceTopHeadlines();
+  }
+
+  onLoadData(event) {
+    console.log('infite scroll', event);
+    this.serviceTopHeadlines(event);
+  }
+
+  serviceTopHeadlines(event?) {
+    this.service.getTopHeadlines(this.page).subscribe((resp: replyToPHeadlines) => {
+      if (resp.status != "error"  &&  resp.articles.length === 0) {
+        event.target.disabled = true;
+        event.target.complete();
+        return;
+      }
       this.notices.push(...resp.articles);
-      console.log('notices:',this.notices);
-      
+      if ( event ) {
+        event.target.complete();
+      }
+    this.page++;
     });
   }
 

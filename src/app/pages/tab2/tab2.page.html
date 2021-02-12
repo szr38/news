@@ -22,4 +22,8 @@
     </ion-segment-button>
   </ion-segment>
   <app-news [notices]="notices"></app-news>
+  <ion-infinite-scroll threshold="100px" position="bottom" (ionInfinite)="onLoadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." class="loadingspinner">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
