@@ -1,16 +1,23 @@
 <ion-grid fixed>
   <ion-row>
     <ion-col size="12" size-lg='3' size-lg="4" size-md="6" size-sm="12" *ngFor="let item of notices; let i=index">
-      <ion-card color="dark">
-        <ion-card-header>
+      <ion-card color="dark" >
+        <ion-card-header >
           <ion-card-subtitle>
-            <span class="text-primary">{{i+1}}. </span>
-            <span class="news-source-name">{{item.source.name}}</span>
+            <div (click)="onClick(item.url)">
+              <span class="text-primary">{{i+1}}.  </span>
+              <span class="news-source-name">{{item.source.name}}</span>
+            </div>
           </ion-card-subtitle>
-          <ion-card-title>{{item.title}}</ion-card-title>
+          <div class="menu-dots">
+            <ion-button (click)="onMenuDots()" fill="clear" shape="round" class="menudots">
+              <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+            </ion-button>
+          </div>
+          <ion-card-title (click)="onClick(item.url)">{{item.title}}</ion-card-title>
         </ion-card-header>
-        <ion-img *ngIf="item.urlToImage" [src]="item.urlToImage"></ion-img>
-        <ion-card-content>{{item.description}}</ion-card-content>
+        <ion-img *ngIf="item.urlToImage" [src]="item.urlToImage" (click)="onClick(item.url)"></ion-img>
+        <ion-card-content (click)="onClick(item.url)">{{item.description}}</ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
